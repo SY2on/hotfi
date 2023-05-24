@@ -1,15 +1,15 @@
-package com.network13.hotfi.entity;
+package com.network13.hotfi.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(AuditingEntityListener.class)
+@AllArgsConstructor
+@Builder
 public class RouterLog {
 
     @Id

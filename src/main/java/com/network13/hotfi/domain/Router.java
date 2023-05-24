@@ -1,9 +1,7 @@
-package com.network13.hotfi.entity;
+package com.network13.hotfi.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -13,6 +11,8 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(AuditingEntityListener.class)
+@AllArgsConstructor
+@Builder
 public class Router {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,14 +27,6 @@ public class Router {
     private Double longitude;
 
     private Double latitude;
-
-    private Double downloadSpeed;
-
-    private Double uploadSpeed;
-
-    private Double gitter;
-
-    private Double ping;
 
     @Column(nullable = false)
     @CreatedDate
