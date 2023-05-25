@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import static com.network13.hotfi.web.Dto.*;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -35,5 +37,13 @@ public class RouterService {
                 .uploadSpeed(uploadLog.getUploadSpeed()).gitter(uploadLog.getGitter()).ping(uploadLog.getPing())
                 .build();
         routerLogRepository.save(routerLog);
+    }
+
+    public LogList findLogListByIp(String ip) {
+        if(!routerRepository.existsByIp(ip)){
+            return new LogList();
+        }
+        Router router = routerRepository.findByIp(ip).orElseThrow(()-> new RuntimeException("Not found router"));
+        return LogList.fromRouter(router);
     }
 }

@@ -2,7 +2,10 @@ package com.network13.hotfi.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -28,5 +31,9 @@ public class RouterLog {
     private Double gitter;
 
     private Double ping;
+
+    @Column(nullable = false)
+    @CreatedDate
+    private LocalDateTime createdDate;
 
 }
