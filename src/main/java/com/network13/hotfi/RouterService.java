@@ -4,11 +4,13 @@ import com.network13.hotfi.domain.Router;
 import com.network13.hotfi.domain.RouterLog;
 import com.network13.hotfi.domain.RouterLogRepository;
 import com.network13.hotfi.domain.RouterRepository;
-import com.network13.hotfi.web.Dto;
 import com.network13.hotfi.web.Dto.uploadLog;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.network13.hotfi.web.Dto.*;
 
@@ -45,5 +47,14 @@ public class RouterService {
         }
         Router router = routerRepository.findByIp(ip).orElseThrow(()-> new RuntimeException("Not found router"));
         return LogList.fromRouter(router);
+    }
+
+    public AllList findAll() {
+        List<Router> allRouters = routerRepository.findAll();
+        List<LogList> allList = new ArrayList<>();
+        for(Router router : allRouters){
+            allList.add(LogList.fromRouter(router));
+        }
+        return new AllList(allList);
     }
 }

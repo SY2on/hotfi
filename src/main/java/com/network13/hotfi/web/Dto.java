@@ -1,5 +1,6 @@
 package com.network13.hotfi.web;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.network13.hotfi.domain.Router;
 import com.network13.hotfi.domain.RouterLog;
 import lombok.AllArgsConstructor;
@@ -91,11 +92,20 @@ public class Dto {
 
         private Double ping;
 
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
         private LocalDateTime time;
 
         public static Log fromRouterLog(RouterLog routerLog){
             return new Log(routerLog.getDownloadSpeed(), routerLog.getUploadSpeed(), routerLog.getGitter(),
                     routerLog.getPing(), routerLog.getCreatedDate());
         }
+    }
+
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Getter
+    public static class AllList{
+
+        List<LogList> allIp;
     }
 }

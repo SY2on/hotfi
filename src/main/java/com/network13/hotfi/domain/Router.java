@@ -36,4 +36,6 @@ public class Router {
     @Column(nullable = false)
     @CreatedDate
     private LocalDateTime createdDate;
+
+
 }

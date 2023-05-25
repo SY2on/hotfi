@@ -27,4 +27,10 @@ public class RouterController {
         return ResponseEntity.ok(logList);
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<AllList> getAll(){
+        AllList allList = routerService.findAll();
+        return ResponseEntity.ok(allList);
+    }
+
 }
